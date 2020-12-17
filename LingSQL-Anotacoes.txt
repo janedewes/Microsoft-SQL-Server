@@ -1,0 +1,45 @@
+Microsoft SQL Server
+
+- É um sistema gerenciador de banco de dados relacional, desenvolvido pela Microsoft - 1989
+- Produtos da família SQL Server:
+    Miscrosoft SQL Server: Database Engine: SQL (bancos OLTP)
+    Miscrosoft SQL Server: Analytical Engine: SSAS (bancos OLAP)
+    Miscrosoft SQL Server: Report Engine: SSRS (Pastas)
+    Miscrosoft SQL Server: ETL Engine: SSIS (Catálogos)
+
+A ferramenta client oficial da Microsoft, para o SQL Server, é o Microsoft SQL Server Management Studio (SSMS)
+
+********************************************************************************************
+
+1. Linguagem de Definição de Dados (DDL)
+- Data Definition Language - criar, alterar e excluir objetos de banco de dados. 
+- Em um Projeto de Banco de Dados: usada na etapa de geração do esquema físico no BD.
+
+- CREATE:
+    Usuários
+    Indices
+    Visoes
+    Chaves estrangeiras 
+    Constraints
+    Sequences
+    Sinonimo, etc
+
+CREATE DATABASE <Nome_do_Banco_de_Dados> (
+    column1 datatype [NOTNULL / NOTE NULL]
+)
+
+---------------------------------------------------------------------------------------------
+
+- ALTER:
+    Evitar recriação de estruturas de dados: BD, tabelas, etc
+    Alterar as estruturas de dados que já estejam criadas
+    Desde que não viole as regras do SGBD / modelo de dados 
+
+
+---------------------------------------------------------------------------------------------
+
+- DROP
+    Excluir estruturas de dados e outros objetos do BD
+
+
+---------------------------------------------------------------------------------------------

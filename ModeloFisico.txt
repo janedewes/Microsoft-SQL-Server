@@ -1,0 +1,68 @@
+empregados 
+    - departamento_id
+    - nome
+    - salariio
+    - email
+    - empregado_id
+    - cargo_id
+    - sobrenome
+    - data_admissao
+
+//sql:
+CREATE TABLE empregados (
+    empregado_id int primary key, 
+    nome varchar(30), 
+    sobrenome varchar(50), 
+    salariio decimal(0,2)
+    email varchar(50), 
+    data_admissao date, 
+    cargo_id int, 
+    departamento_id int
+);
+-------------------------------------------
+departamentos
+    - departamento_nome
+    - departamento_id
+    - localidade_id
+
+//sql:
+CREATE TABLE departamentos (
+    departamento_id int primary key, 
+    departamento_nome varchar(50), 
+    localidade_id int
+);
+
+
+// chave estrangeira epregados-departamentos:
+ALTER TABLE empregados ADD CONSTRAINT FK_EMP_DEP FOREIGN KEY(departamento_id) REFERENCES departamentos(departamento_id);
+
+
+CREATE UNIQUE INDEX IX_EMAIL_EMP ON empregados(email);
+
+-------------------------------------------
+cargos
+    -cargo_nome
+    -cargo_id
+
+
+-------------------------------------------
+cargos_historico
+    - data_inicio
+    - data_fim 
+    - empregado_id
+    - cargo_id
+    - cargo_historico_id
+
+-------------------------------------------
+localidades 
+    - cidade
+    - estado
+    - localidade_id
+    - endereco
+    - pais_id
+
+-------------------------------------------
+paises 
+    - paises_id
+    - pais_nome
+    - regiao_id
