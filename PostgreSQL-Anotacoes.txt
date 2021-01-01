@@ -1,0 +1,97 @@
+Armazenamento de dados no PostgreSQL
+
+
+1º) Abrir pgAdmin4
+
+2º) Criar Banco de Dados 
+
+3º) Criar Schemas 
+
+4º) Criar Tabelas (com as respectivas colunas)
+
+
+5º) Fazer a carga de dados 
+Botao direito na tabela IMPORT/EXPORT
+
+
+6º) Alterar com ling SQL: 
+Botao direito na tabela QUERY TOOL
+ex: Alterar o formato de uma tabela:
+
+alter table cap16."TB_FUNC" alter column numero_filhos type character varying (2);
+
+(clicar no Play)
+
+
+7º) As tabelas ficam dentro de Schemas no BD: Schema."nome_da_tabela"
+ex:
+select * from cap16."TB_FUNC"
+select * from cap16."TB_FUNC" limit 5 (quando a tabela for muito grande, evitar travamento)(ou)
+select * from cap16."TB_FUNC" fetch first 5 rows only
+
+
+8º) Linhas duplicadas - Remover duplicidade se houver
+ex:
+select distinct * from cap16."TB_FUNC" (como id é a chave primaria, ele nunca irá retornar linhas duplicadas)
+select distinct numero_filhos from cap16."TB_FUNC" (de uma coluna específica)
+
+
+9º) Filtrar dados 
+ex:
+select * from cap16."TB_FUNC" where idade = 30
+
+
+10º) Operadores de Comparação
+Ex selecionar o numero de linhas a partir de uma tabela:
+select count(*) from cap16."TB_FUNC"
+select count(*) from cap16."TB_FUNC" where idade = 40
+select count(*) from cap16."TB_FUNC" where idade != 40
+select count(*) from cap16."TB_FUNC" where idade > 40
+select count(*) from cap16."TB_FUNC" where idade >= 40
+select count(*) from cap16."TB_FUNC" where idade <= 40
+select count(*) from cap16."TB_FUNC" where idade < 40
+
+
+
+11º) Operadores Lógicos  
+ex Servem para concatenar diversas operações de comparação:
+select * from cap16."TB_FUNC" where idade < 30 and estado_civil = 'casado' (duas condições devem ser verdadeiras)
+select * from cap16."TB_FUNC" where idade < 30 or estado_civil = 'viuvo' (uma das opçoes verdadeira)
+
+
+12º) BETWEEN (inclusive)
+select * from cap16."TB_FUNC" where idade between 30 and 35
+
+13º) LIKE- Pesquisar por strings: (% caracter que acompanha o like, sem o % ele faz a comparação exata)
+select * from cap16."TB_FUNC" where grau_instrucao like '%medio'
+select * from cap16."TB_FUNC" where grau_instrucao like 'medio%'
+select * from cap16."TB_FUNC" where grau_instrucao like '%medio%'
+
+
+14º) IN 
+select * from cap16."TB_FUNC" where idade in (20, 30, 40, 50)
+
+
+*************************************************************************************
+15º) IS NULL (valor ausente)
+select * from cap16."TB_FUNC" where numero_filhos is not null (caracteres de strings)
+
+16º) UPDATE (para nulo)
+Ex: converter NA em valor nulo:
+update cap16."TB_FUNC"
+set numero_filhos = null 
+where numero_filhos = 'NA';
+
+commit; (grava a atualização feita no BD)
+
+select * from cap16."TB_FUNC" where numero_filhos is null 
+
+*************************************************************************************
+
+17º) TRUNCATE (limpar uma tabela) 
+truncate 
+truncate cascade (limpa tabelas associadas)
+
+
+
+
