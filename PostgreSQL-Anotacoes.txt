@@ -1,6 +1,10 @@
 Armazenamento de dados no PostgreSQL
 
+TUTORIAL: 
+https://www.w3schools.com/sql/sql_intro.asp
+http://www.sqlcourse.com/intro.html
 
+*************************************************************************************
 1º) Abrir pgAdmin4
 
 2º) Criar Banco de Dados 
@@ -93,5 +97,101 @@ truncate
 truncate cascade (limpa tabelas associadas)
 
 
+18º) DELETE
+delete from cap16."TB_FUNC" (apaga todos os registros da tabela!!)
+
+delete from cap16."TB_FUNC"
+where numero_filhos = 'NA';
+
+commit; (grava alteração no BD)
 
 
+
+19º) INSERT (Postgre possui a opção de alguns scripts disponíveis, para isso clicar com botao direito 
+sobre a tabela na opção SCRIPTS)
+
+INSERT INTO cap16."TB_FUNC"(
+	id, estado_civil, grau_instrucao, numero_filhos, salario_hora, idade, reg_procedencia)
+	VALUES (?, ?, ?, ?, ?, ?, ?);
+
+
+20º) ORDER BY
+select * from cap16."TB_FUNC" order by salario_hora asc
+select * from cap16."TB_FUNC" order by salario_hora desc
+select * from cap16."TB_FUNC" order by salario_hora, reg_procedencia desc (2cols)
+select * from cap16."TB_FUNC" order by salario_hora desc, reg_procedencia desc (2cols)
+
+
+21º) MIN, MAX, AVG, COUNT, SUM
+select min(salario_hora), max(salario_hora), avg(salario_hora), count(*), sum(salario_hora) from cap16."TB_FUNC" 
+
+
+22º) GROUP BY (resumir os dados por níveis)
+select distinct reg_procedencia from cap16."TB_FUNC";
+
+Obter info por região de procedencia:
+select round(avg(salario_hora)),  reg_procedencia
+from cap16."TB_FUNC" 
+group by reg_procedencia;
+
+Obter info por grau de instrução:
+select round(avg(salario_hora)), grau_instrucao
+from cap16."TB_FUNC" 
+group by grau_instrucao;
+
+
+*************************************************************************************
+EXEMPLO:
+/* Instrução SQL que retorna a média de idade, número de filhos e grau de instrução dos funcionários cujo 
+salário_hora estiver acima da média de todos os funcionários.
+Retornar os dados somente de funcionários da capital e estado civil casado, com ordem decrescente da media de idade.
+*/
+
+select round(avg(idade)), numero_filhos, grau_instrucao
+from cap16."TB_FUNC"
+where reg_procedencia = 'capital'
+	and estado_civil = 'casado'
+	and salario_hora > (select avg(salario_hora) from cap16."TB_FUNC") (essa linha é uma subquery)
+group by numero_filhos, grau_instrucao
+order by  round(avg(idade)) desc
+
+*************************************************************************************
+EXEMPLO:
+/*  Retornar todos os regiistros dos funcionários com 2 filhos. 
+usar cast (conversao de tipos de dados)*/
+
+select * 
+from cap16."TB_FUNC"
+where numero_filhos = '2'
+
+ou 
+
+select * 
+from cap16."TB_FUNC"
+where cast(numero_filhos as integer) = 2
+
+*************************************************************************************
+EXEMPLO: (JOIN)
+/* Retornar a média de salário hora por estado */
+
+select avg(salario_hora), estado 
+from cap16."TB_FUNC" f, cap16."TB_ENDERECO" e  ("f" e "e" são apelidos para as tabelas)
+where f.id = e.id_func
+group by estado 
+
+ou o ideal(com os respectivos apelidos na frente das colunas para indicar de quais tabelas os mesmos são: 
+
+select round(avg(f.salario_hora)), e.estado 
+from cap16."TB_FUNC" f, cap16."TB_ENDERECO" e
+where f.id = e.id_func
+group by e.estado
+
+
+************************************************************************************* 
+
+23º Criação de Views - (Salvar querys para usar toda vez sem precisar digitar tudo novamente)
+- Botão direito - create - view
+- Nomear a view
+- Em code colar query desejada
+- Digitar comando abaixo para chamar a query salva: 
+select  * from cap16."VW_FUNC"
