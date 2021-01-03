@@ -8,7 +8,6 @@ Microsoft SQL Server
     Miscrosoft SQL Server: ETL Engine: SSIS (Catálogos)
 
 A ferramenta client oficial da Microsoft, para o SQL Server, é o Microsoft SQL Server Management Studio (SSMS)
-
 ********************************************************************************************
 
 1. Linguagem de Definição de Dados (DDL)
@@ -29,7 +28,6 @@ CREATE DATABASE <Nome_do_Banco_de_Dados> (
 )
 
 ---------------------------------------------------------------------------------------------
-
 - ALTER:
     Evitar recriação de estruturas de dados: BD, tabelas, etc
     Alterar as estruturas de dados que já estejam criadas
@@ -37,9 +35,74 @@ CREATE DATABASE <Nome_do_Banco_de_Dados> (
 
 
 ---------------------------------------------------------------------------------------------
-
 - DROP
     Excluir estruturas de dados e outros objetos do BD
 
 
+********************************************************************************************
+
+2. Linguagem de Manipulação de Dados (DML)
+- Data Manipulation Language (DML)
+- Classe da Linguagem SQL com comandos que permitem:
+	Inserir dados (novas linhas/tuplas)
+	Atualizar dados (linhas/tuplas existentes)
+	Excluir dados: remover linhas/tuplas existentes
+	Selecionar dados: recuperar dados armazenados para exibição e/ou processamento
+
 ---------------------------------------------------------------------------------------------
+- SELECT 
+SELECT <relação de colunas ou *> FROM 
+
+---------------------------------------------------------------------------------------------
+- Alias de Coluna - AS (apelido, não muda o nome da col no BD)
+ex: SELECT Name AS Nome_do_Produto FROM Production.Product;
+
+- Alias de Tabela 
+ex: SELECT Name, ProductNumber FROM Production.Product AS P;
+
+---------------------------------------------------------------------------------------------
+- Expressão CASE (múltiplas correspondencias não sao permitidas, cláusula ELSE se existir, caso contrário retorna NULL)(nao altera os dados no BD)
+ex:
+CASE Expressão_de_Entrada
+WHEN expressão_de_comparação THEN expressão_resultado [...n]
+[ELSE expressão_resultado_else]
+END
+
+ou 
+
+CASE 
+WHEN Expressão_Booleana THEN expressão_resultado [...n]
+[ELSE expressão_resultado_else]
+END
+---------------------------------------------------------------------------------------------
+
+- Operadores aritméticos e de concatenação
+...+''+....+''+....
+
+Ordem: divisão, multiplicação, módulo, adição/concatenação, subtração
+
+---------------------------------------------------------------------------------------------
+ - ORDER BY
+asc
+desc
+
+Ordem de execução dos comandos:
+1- FROM 
+2- WHERE
+3- GROUP BY 
+4- HAVING
+5- SELECT
+6- ORDER BY
+
+---------------------------------------------------------------------------------------------
+- WHERE (filtro)
+- TOP (limite da quantidade de linhas)
+- DISTINCT
+- Operadores de Comparação 
+- Operadores Lógicos 
+- Ordem de Avaliação dos Operadores
+- Alias  de Coluna na cláusula WHERE
+
+---------------------------------------------------------------------------------------------
+
+
