@@ -103,6 +103,49 @@ Ordem de execução dos comandos:
 - Ordem de Avaliação dos Operadores
 - Alias  de Coluna na cláusula WHERE
 
+
+********************************************************************************************
+
+AGRUPAMENTO DE DADOS E FUNÇÕES DE AGREGAÇÃO
+
+- Funções de Agregação - Executar cálculos (contagem, soma, média etc) em um conjunto de linhas, ao invés de fazê-lo linha a linha.
+Ignoram os valores nulos (NULL).
+
+- MIN() E MAX()
+- COUNT(*) conta TODAS as linhas incluindo valores nulos.
+COUNT(expressão) conta sobre um produto específico  e de linhas não nulas.
+- SUM() e AVG() valores não nulos 
+
+- Funções de Agregação x Valores Nulos
+
+
 ---------------------------------------------------------------------------------------------
 
+AGRUPAMENTOS DE DADOS - Criação de subconjuntos de dados
 
+- Agrupamento de dados - podemos usar as funções de agregação para realizar cálculos numéricos por agrupamento. 
+- A cláusula GROUP BY
+Ordem de execussão: 
+1. FROM
+2. WHERE
+3. GROUP BY 
+4. HAVING
+5. SELECT
+6. ORDER BY
+
+- Alias no GROUP BY 
+- Filtrando Agrupamento de Dados 
+
+
+********************************************************************************************
+
+INTRODUÇÃO À JOIN(junção) DE TABELAS 
+
+- Inner Join (interseção)
+- cross join (combina todos os valores)
+- outer join:
+(left outer join - interseção e tabela à esquerda
+ right outer join - interseção e tabela à direita
+full outer join - linhas da esquerda + linhas da direita(as quais não forem encontradas linhas correspondentes na tabela contrária))
+
+********************************************************************************************
